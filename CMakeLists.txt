@@ -12,7 +12,9 @@ if(${APPLE})
 elseif(${WIN32})
     set(glfw_dir "../Libraries/glfw-3.3.8")
 else() #UNIX
-    set(glfw_dir "../Libraries/glfw-3.3.8")
+    set(glfw_dir "../Libraries/glfw")
+    set(OpenGL_GL_PREFERENCE GLVND)
+    find_package(OpenGL REQUIRED)
 endif()
 
 add_subdirectory(${glfw_dir} glfw3)
@@ -37,7 +39,7 @@ if(${APPLE})
 elseif(${WIN32})
     target_link_libraries(base-for-imgui glfw3 gdi32 opengl32 imm32)
 else() #UNIX
-    target_link_libraries(base-for-imgui glfw3)
+    target_link_libraries(base-for-imgui glfw OpenGL::GL)
 endif()
 
 #stdc++ "-framework Metal" "-framework Foundation" "-framework QuartzCore" objc)
