@@ -1,0 +1,35 @@
+cmake_minimum_required(VERSION 3.8)
+project(HelloWorld)
+
+set(CMAKE_CXX_STANDARD 17)
+
+set(IMGUI_DIR imgui-docking)
+#include_directories(metal-cpp)
+
+find_package(SDL2 REQUIRED)
+
+include_directories(${SDL2_INCLUDE_DIRS} ${IMGUI_DIR} ${IMGUI_DIR}/backends)
+
+set(SOURCE_FILES example_sdl_opengl3/main.cpp
+        ${IMGUI_DIR}/imgui.cpp
+        ${IMGUI_DIR}/imgui_demo.cpp
+        ${IMGUI_DIR}/imgui_draw.cpp
+        ${IMGUI_DIR}/imgui_tables.cpp
+        ${IMGUI_DIR}/imgui_widgets.cpp
+        ${IMGUI_DIR}/backends/imgui_impl_sdl.cpp
+        ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
+        )
+add_executable(program ${SOURCE_FILES})
+
+
+# specify which libraries to connect
+# target_link_libraries(program ${METAL})
+# target_link_libraries(program ${FOUNDATION})
+# target_link_libraries(program ${QUARTZCORE})
+
+#find_library(METAL Metal)
+#find_library(FOUNDATION Foundation)
+#find_library(QUARTZCORE QuartzCore)
+
+target_link_libraries(program ${SDL2_LIBRARIES} stdc++ "-framework OpenGL" "-framework IOKit" "-framework CoreVideo" "-framework Cocoa" objc)
+#stdc++ "-framework Metal" "-framework Foundation" "-framework QuartzCore" objc)

@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.8)
+project(HelloWorld)
+
+set(CMAKE_CXX_STANDARD 17)
+
+include_directories(metal-cpp)
+
+set(SOURCE_FILES metal-cpp-test/main.cpp metal-cpp-test/metal_adder.cpp)
+add_executable(program ${SOURCE_FILES})
+
+# specify which libraries to connect
+# target_link_libraries(program ${METAL})
+# target_link_libraries(program ${FOUNDATION})
+# target_link_libraries(program ${QUARTZCORE})
+
+find_library(METAL Metal)
+find_library(FOUNDATION Foundation)
+find_library(QUARTZCORE QuartzCore)
+
+target_link_libraries(program stdc++ "-framework Metal" "-framework Foundation" "-framework QuartzCore" objc)
