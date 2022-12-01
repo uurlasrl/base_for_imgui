@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(general-examples-imgui)
+project(base-for-imgui)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -30,14 +30,14 @@ set(SOURCE_FILES example_glfw_opengl3/main.cpp
         ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
 
         )
-add_executable(general-examples-imgui ${SOURCE_FILES})
+add_executable(base-for-imgui ${SOURCE_FILES})
 
 if(${APPLE})
-    target_link_libraries(general-examples-imgui stdc++ glfw "-framework OpenGL" "-framework IOKit" "-framework CoreVideo" "-framework Cocoa" objc)
+    target_link_libraries(base-for-imgui stdc++ glfw "-framework OpenGL" "-framework IOKit" "-framework CoreVideo" "-framework Cocoa" objc)
 elseif(${WIN32})
-    target_link_libraries(general-examples-imgui glfw3 gdi32 opengl32 imm32)
+    target_link_libraries(base-for-imgui glfw3 gdi32 opengl32 imm32)
 else() #UNIX
-    target_link_libraries(general-examples-imgui glfw3)
+    target_link_libraries(base-for-imgui glfw3)
 endif()
 
 #stdc++ "-framework Metal" "-framework Foundation" "-framework QuartzCore" objc)
