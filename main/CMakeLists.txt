@@ -18,7 +18,7 @@ add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
 # target_link_libraries(program ${FOUNDATION})
 # target_link_libraries(program ${QUARTZCORE})
 
-target_link_libraries(${CMAKE_PROJECT_NAME} ${GLEW_LIBRARIES} ${IMGUI_LIBRARIES})
+target_link_libraries(${CMAKE_PROJECT_NAME}  ${IMGUI_LIBRARIES} GLEW::GLEW)
 
 message(STATUS "FIN Modulo main")
 
