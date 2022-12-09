@@ -6,17 +6,13 @@ message(STATUS "INI Modulo main")
 #        )
 
 set(SOURCE_FILES
-        main.cpp
-        Application.cpp
+        main_opengl.cpp
+        #Application.cpp
         ${IMGUI_SOURCE_FILES}
         )
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
 
-# specify which libraries to connect
-# target_link_libraries(program ${METAL})
-# target_link_libraries(program ${FOUNDATION})
-# target_link_libraries(program ${QUARTZCORE})
 
 target_link_libraries(${CMAKE_PROJECT_NAME}  ${IMGUI_LIBRARIES} GLEW::GLEW)
 
