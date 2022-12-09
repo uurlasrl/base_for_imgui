@@ -1,20 +1,26 @@
 message(STATUS "INI Modulo ImGui glfw opengl3")
 
-set(IMGUI_DIR imgui-docking)
+if(NOT DEFINED GLFW_DIR)
+    message(STATUS "GLFW3 does not exist try to include  ${CMAKE_SOURCE_DIR}/cmake-procedures/CMakeAddGLFW.cmake")
+    include(${CMAKE_SOURCE_DIR}/cmake-procedures/CMakeAddGLFW.cmake)
+    if(NOT DEFINED GLFW_DIR)
+        message( FATAL_ERROR "missing ${CMAKE_SOURCE_DIR}/cmake-procedures/CMakeAddGLFW.cmake" )
+    endif()
+endif()
+
+if(NOT EXISTS ${CMAKE_SOURCE_DIR}/imgui-docking )
+    message( FATAL_ERROR "missing ${CMAKE_SOURCE_DIR}/imgui-docking" )
+endif()
+set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/imgui-docking)
 
 if(${APPLE})
-    set(glfw_dir "../Libraries/glfw-3.3.8")
 elseif(${WIN32})
-    set(glfw_dir "../Libraries/glfw")
 else() #UNIX
-    set(glfw_dir "../Libraries/glfw")
     set(OpenGL_GL_PREFERENCE GLVND)
     find_package(OpenGL REQUIRED)
 endif()
 
-add_subdirectory(${glfw_dir} glfw3)
-
-include_directories( ${glfw_dir}/include ${GLFW_INCLUDE_DIRS} ${IMGUI_DIR} ${IMGUI_DIR}/backends)
+include_directories( ${IMGUI_DIR} ${IMGUI_DIR}/backends)
 
 set(IMGUI_SOURCE_FILES
         ${IMGUI_DIR}/imgui.cpp
