@@ -1,18 +1,20 @@
-
-if(${WIN32})
 message(STATUS "INI Modulo ImGui Win32 DirectX11")
+
+if(NOT ${WIN32})
+    message( FATAL_ERROR "ActiX only on Win32" )
+endif()
 
 set(WLIB_DIR "c:/Program Files (x86)/Windows Kits/10/Lib/10.0.19041.0")
 set(WINCLUDE_DIR "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0")
 
-set(IMGUI_DIR imgui-docking)
+set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/imgui-docking)
 
-#set(glfw_dir "../Libraries/glfw")
 
 find_library(D3D11_LIBRARY d3d11.lib     PATHS     "$ENV{DXSDK_DIR}/Lib/x86" "C:/Program Files (x86)/Microsoft DirectX SDK/Lib/x86"     DOC "The directory where d3d11.lib resides")
 find_library(D3DX11_LIBRARY d3dx11.lib     PATHS     "$ENV{DXSDK_DIR}/Lib/x86" "C:/Program Files (x86)/Microsoft DirectX SDK/Lib/x86"     DOC "The directory where d3dx11.lib resides")
 
 message(STATUS "D3DX11_LIBRARY=${D3D11_LIBRARY}")
+
 include_directories( ${IMGUI_DIR} ${IMGUI_DIR}/backends
        # "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um"
        # "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/shared"
@@ -41,4 +43,3 @@ set(IMGUI_SOURCE_FILES
 
 
 message(STATUS "FIN Modulo ImGui Win32 DirectX11")
-endif()
