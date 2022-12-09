@@ -7,6 +7,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
+include(cmake-procedures/CMakeAddGLEW.cmake)
+
 if (${WIN32})
     if (${WIN32ACTIVEX})
         include(cmake-procedures/CMakeAddImGuiDX.cmake)
