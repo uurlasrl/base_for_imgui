@@ -13,8 +13,11 @@ set(SOURCE_FILES
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
 
-
-target_link_libraries(${CMAKE_PROJECT_NAME}  ${IMGUI_LIBRARIES} ${GLEW_LIBRARIES})
+if(${WIN32})
+    target_link_libraries(${CMAKE_PROJECT_NAME}  ${IMGUI_LIBRARIES} ${GLEW_LIBRARIES})
+elseif(${APPLE} OR ${UNIX})
+    target_link_libraries(${CMAKE_PROJECT_NAME}  ${IMGUI_LIBRARIES} GLEW::GLEW)
+endif()
 
 message(STATUS "FIN Modulo main")
 
