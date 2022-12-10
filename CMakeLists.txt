@@ -9,6 +9,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 include(cmake-procedures/CMakeAddGLEW.cmake)
 
+include(cmake-procedures/CMakeAddSOIL2.cmake)
+
 if (${WIN32})
     if (${WIN32ACTIVEX})
         include(cmake-procedures/CMakeAddImGuiDX.cmake)
