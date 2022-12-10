@@ -6,7 +6,7 @@ message(STATUS "INI Modulo main")
 #        )
 
 set(SOURCE_FILES
-        src/corso/main.cpp
+        src/corso/main_back.cpp
         src/corso/Shader.cpp
         #Application.cpp
         ${IMGUI_SOURCE_FILES}
