@@ -34,6 +34,7 @@ const GLint WIDTH = 800, HEIGHT = 600;
 //                                     "}";
 
 int main(int, char **) {
+    std::cout << "stupido out!!!" << std::endl;
     if (!glfwInit()) {
         std::cout << "ma che sfiga iniziale!!!" << std::endl;
         return EXIT_FAILURE;
@@ -43,10 +44,10 @@ int main(int, char **) {
     const char *glsl_version = "#version 150";
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
-    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
     GLFWwindow *windows = glfwCreateWindow(WIDTH, HEIGHT, "Learn OpenGL", nullptr, nullptr);
     int screenWidth, screenHeight;
@@ -66,7 +67,7 @@ int main(int, char **) {
         return EXIT_FAILURE;
     }
     // Define the viewport dimensions
-    glViewport( 0, 0, screenWidth, screenHeight );
+   // glViewport( 0, 0, screenWidth, screenHeight );
 
 
 //    /** compilazione shader */
@@ -108,7 +109,7 @@ int main(int, char **) {
 
 
     /** texture **/
-    glEnable(GL_BLEND);
+    //glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC1_ALPHA);
 
 
@@ -239,6 +240,7 @@ int main(int, char **) {
 
     while (!glfwWindowShouldClose(windows)) {
         glfwPollEvents();
+        //std::cout << "stupido out1!!!" << std::endl;
 
         /** ImGui scrittura */
         // Start the Dear ImGui frame
@@ -323,6 +325,7 @@ int main(int, char **) {
         }
 
         glfwSwapBuffers(windows);
+       // std::cout << "stupido out2!!!" << std::endl;
 
     }
 
