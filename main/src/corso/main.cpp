@@ -34,14 +34,14 @@ const GLint WIDTH = 800, HEIGHT = 600;
 //                                     "}";
 
 int main(int, char **) {
-    std::cout << "stupido out!!!" << std::endl;
+
     if (!glfwInit()) {
         std::cout << "ma che sfiga iniziale!!!" << std::endl;
         return EXIT_FAILURE;
     }
 
     // GL 3.3 + GLSL 330
-    const char *glsl_version = "#version 150";
+    const char *glsl_version = "#version 330";
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -109,7 +109,7 @@ int main(int, char **) {
 
 
     /** texture **/
-    //glEnable(GL_BLEND);
+    glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC1_ALPHA);
 
 
@@ -296,7 +296,7 @@ int main(int, char **) {
         glClear(GL_COLOR_BUFFER_BIT);
         // draw opengl
 
-        //if (show_another_window) {
+        if (show_another_window) {
 
             ourShader.Use();
             glActiveTexture(GL_TEXTURE0);
@@ -311,7 +311,7 @@ int main(int, char **) {
   //          glBindVertexArray(VAO);
   //          glDrawArrays(GL_TRIANGLES, 0, 3);
   //          glBindVertexArray(0);
-        //}
+        }
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         // Update and Render additional Platform Windows
