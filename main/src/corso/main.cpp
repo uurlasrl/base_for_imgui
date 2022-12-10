@@ -109,7 +109,9 @@ int main(int, char **) {
 
 
     /** texture **/
+#if defined(__APPLE__)
     glEnable(GL_BLEND);
+#endif
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC1_ALPHA);
 
 
