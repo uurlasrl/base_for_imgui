@@ -128,6 +128,8 @@ int main( )
     SOIL_free_image_data( image );
     glBindTexture( GL_TEXTURE_2D, 0 );
 
+
+
     // Game loop
     while ( !glfwWindowShouldClose( window ) )
     {

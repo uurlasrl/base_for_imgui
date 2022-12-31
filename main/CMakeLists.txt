@@ -6,7 +6,7 @@ message(STATUS "INI Modulo main")
 #        )
 
 set(SOURCE_FILES
-        src/corso/main_back.cpp
+        src/corso/main.cpp
         src/corso/Shader.cpp
         #Application.cpp
         ${IMGUI_SOURCE_FILES}
@@ -14,13 +14,32 @@ set(SOURCE_FILES
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
 
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE src)
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC src ${IMGUI_INCLUDE_DIRS})
 
+if (${BUILD_SHARED_LIBS})
+    target_link_libraries(${CMAKE_PROJECT_NAME} libglew_shared)
+else ()
+    target_link_libraries(${CMAKE_PROJECT_NAME} libglew_static)
+endif ()
+
+target_link_libraries(${CMAKE_PROJECT_NAME} glog::glog glm SDL2::SDL2 SDL2::SDL2main SDL2_image)
 
 if(${WIN32})
-    target_link_libraries(${CMAKE_PROJECT_NAME}  ${IMGUI_LIBRARIES} ${GLEW_LIBRARIES} soil2)
-elseif(${APPLE} OR ${UNIX})
-    target_link_libraries(${CMAKE_PROJECT_NAME}  ${IMGUI_LIBRARIES} GLEW::GLEW soil2)
+    target_link_libraries(${CMAKE_PROJECT_NAME}
+            gdi32
+            opengl32
+            imm32)
+elseif(${APPLE})
+    target_link_libraries(${CMAKE_PROJECT_NAME}
+            stdc++
+            "-framework OpenGL"
+            "-framework IOKit"
+            "-framework CoreVideo"
+            "-framework Cocoa"
+            objc)
+elseif(${UNIX})
+    target_link_libraries(${CMAKE_PROJECT_NAME}
+            OpenGL::GL)
 endif()
 
 
@@ -37,6 +56,15 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/images/image3.png
 message(STATUS "FIN Modulo main")
 
 
+
+
+if(${APPLE})
+    set(IMGUI_LIBRARIES stdc++  "-framework OpenGL" "-framework IOKit" "-framework CoreVideo" "-framework Cocoa" objc)
+elseif(${WIN32})
+    set(IMGUI_LIBRARIES  gdi32 opengl32 imm32)
+else() #UNIX
+    set(IMGUI_LIBRARIES  OpenGL::GL)
+endif()
 
 
 
